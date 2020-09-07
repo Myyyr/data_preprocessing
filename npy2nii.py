@@ -33,7 +33,7 @@ def set_up_splits_folders(path, n_split=6, size = None):
 		out_dir = str(size[0])+"_"+str(size[1])+"_"+str(size[2])
 	else:
 		out_dir = "512_512_256"
-	os.path.mkdir(os.path.join(path,out_dir))
+	os.mkdir(os.path.join(path,out_dir))
 	for i in range(n_split):
 		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1)))
 
