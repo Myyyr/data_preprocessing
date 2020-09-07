@@ -82,4 +82,4 @@ def main(root_path, out_dir, n_split = 6, size = None):
 
 
 if __name__ == '__main__':
-	main("~/data/TCIA_torch", "~/data/160_160_96", 6, (160,160,96))
+	main("~/data/TCIA_torch", "/etudiants/siscol/t/themyr_l/data/160_160_96", 6, (160,160,96))
