@@ -28,13 +28,13 @@ def set_up_folders(path):
 		os.mkdir(os.path.join(path, split, 'label'))
 		os.mkdir(os.path.join(path, split, 'image'))
 
-def set_up_splits_folders(path, out_dir, n_split=6, size = None):
+def set_up_splits_folders(path, n_split=6, size = None):
 	for i in range(n_split):
-		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1)))
+		os.mkdir(os.path.join(path, "split_"+str(i+1)))
 
 	for split in range(n_split):
-		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1), 'label'))
-		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1), 'image'))
+		os.mkdir(os.path.join(path, "split_"+str(i+1), 'label'))
+		os.mkdir(os.path.join(path, "split_"+str(i+1), 'image'))
 
 def pid2niipid(pid):
 	return ''.join(['0']*(4 - len(pid))) + pid
@@ -53,7 +53,7 @@ def main(root_path, out_dir, n_split = 6, size = None):
 	splits = np.array(train + test + [-1,-1])
 	splits = np.reshape(splits, (n_split,int(splits.shape[0]/n_split)) )
 	
-	set_up_splits_folders(root_path, out_dir ,n_split=n_split)
+	set_up_splits_folders(out_dir ,n_split=n_split)
 
 	for split in ['images', 'labels']:
 		fl = file_list(os.path.join(root_path, split))
