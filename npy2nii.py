@@ -77,7 +77,7 @@ def main(root_path, n_split = 6, size = None):
 			out_path = ''
 			for i in range(n_split):
 				if pid in list(splits[i,:]):
-					out_path = = os.path.join(root_path,'split_'+str(i+1), split.replace('s',''), niipid+'.nii')
+					out_path = os.path.join(root_path,'split_'+str(i+1), split.replace('s',''), niipid+'.nii')
 			# if pid in train:
 			# 	out_path = os.path.join(root_path, 'train', split.replace('s',''), niipid+'.nii')
 			# elif pid in test:
