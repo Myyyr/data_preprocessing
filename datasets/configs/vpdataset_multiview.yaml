@@ -1,0 +1,7 @@
+dataset : vpdataset
+
+size : [512,512,192]
+voxel_spacing : [-1.0,-1.0,1.4]
+windowing : [-160,300]
+
+class_info : '/local/DEEPLEARNING/9_classes/config_abdo_multiview.json'
