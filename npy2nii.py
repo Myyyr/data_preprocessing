@@ -28,13 +28,18 @@ def set_up_folders(path):
 		os.mkdir(os.path.join(path, split, 'label'))
 		os.mkdir(os.path.join(path, split, 'image'))
 
-def set_up_splits_folders(path, n_split=6):
+def set_up_splits_folders(path, n_split=6, size = None):
+	if size != None:
+		out_dir = str(size[0])+"_"+str(size[1])+"_"+str(size[2])
+	else:
+		out_dir = "512_512_256"
+	os.path.mkdir(os.path.join(path,out_dir))
 	for i in range(n_split):
-		os.mkdir(os.path.join(path, "split_"+str(i+1)))
+		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1)))
 
 	for split in range(n_split):
-		os.mkdir(os.path.join(path, "split_"+str(i+1), 'label'))
-		os.mkdir(os.path.join(path, "split_"+str(i+1), 'image'))
+		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1), 'label'))
+		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1), 'image'))
 
 def pid2niipid(pid):
 	return ''.join(['0']*(4 - len(pid))) + pid
@@ -82,4 +87,4 @@ def main(root_path, n_split = 6, size = None):
 
 
 if __name__ == '__main__':
-	main("/home/myr/stage2020/data/TCIA_torch")
+	main("~/data/TCIA_torch", (160,160,96))
