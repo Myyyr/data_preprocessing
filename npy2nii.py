@@ -33,7 +33,7 @@ def set_up_splits_folders(path, n_split=6, size = None):
 		if not os.path.exists(os.path.join(path, "split_"+str(i+1))):
 			os.mkdir(os.path.join(path, "split_"+str(i+1)))
 
-	for split in range(n_split):
+	for i in range(n_split):
 		if not os.path.exists(os.path.join(path, "split_"+str(i+1), 'label')):
 			os.mkdir(os.path.join(path, "split_"+str(i+1), 'label'))
 
