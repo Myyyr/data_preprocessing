@@ -28,12 +28,7 @@ def set_up_folders(path):
 		os.mkdir(os.path.join(path, split, 'label'))
 		os.mkdir(os.path.join(path, split, 'image'))
 
-def set_up_splits_folders(path, n_split=6, size = None):
-	if size != None:
-		out_dir = str(size[0])+"_"+str(size[1])+"_"+str(size[2])
-	else:
-		out_dir = "512_512_256"
-	os.mkdir(os.path.join(path,out_dir))
+def set_up_splits_folders(path, out_dir, n_split=6, size = None):
 	for i in range(n_split):
 		os.mkdir(os.path.join(path, out_dir, "split_"+str(i+1)))
 
@@ -52,13 +47,13 @@ def transform_size(img, size = None):
 	return img.to_numpy()
 
 
-def main(root_path, n_split = 6, size = None):
+def main(root_path, out_dir, n_split = 6, size = None):
 	train = ['74', '52', '22', '81', '44', '40', '35', '76', '58', '54', '77', '13', '45', '41', '3', '50', '8', '18', '43', '39', '80', '67', '66', '25', '32', '46', '49', '51', '53', '28', '16', '36', '11', '61', '21', '78', '17', '71', '73', '56', '48', '65', '34', '10', '27', '15', '1', '68', '57', '37', '20', '59', '4', '7', '33', '79', '9', '75', '82', '47', '29', '2', '72', '24', '70']
 	test  = ['6', '62', '64', '55', '38', '26', '5', '30', '12', '42', '19', '14', '31', '60', '63', '69', '23']
 	splits = np.array(train + test + [-1,-1])
 	splits = np.reshape(splits, (n_split,int(splits.shape[0]/n_split)) )
 	
-	set_up_splits_folders(root_path, n_split=n_split)
+	set_up_splits_folders(root_path, out_dir ,n_split=n_split)
 
 	for split in ['images', 'labels']:
 		fl = file_list(os.path.join(root_path, split))
@@ -77,7 +72,7 @@ def main(root_path, n_split = 6, size = None):
 			out_path = ''
 			for i in range(n_split):
 				if pid in list(splits[i,:]):
-					out_path = os.path.join(root_path,'split_'+str(i+1), split.replace('s',''), niipid+'.nii')
+					out_path = os.path.join(out_dir,'split_'+str(i+1), split.replace('s',''), niipid+'.nii')
 			# if pid in train:
 			# 	out_path = os.path.join(root_path, 'train', split.replace('s',''), niipid+'.nii')
 			# elif pid in test:
@@ -87,4 +82,4 @@ def main(root_path, n_split = 6, size = None):
 
 
 if __name__ == '__main__':
-	main("~/data/TCIA_torch",6, (160,160,96))
+	main("~/data/TCIA_torch", "~/data/160_160_96", 6, (160,160,96))
