@@ -47,7 +47,11 @@ def pid2niipid(pid):
 def transform_size(img, size = None):
 	if size != None:
 		img = torch.from_numpy(img)
+		img = torch.unsqueeze(img, 0)
+		img = torch.unsqueeze(img, 0)
 		img = nn.functional.interpolate(img, size, mode='trilinear')
+		img = torch.squeeze(img)
+		img = torch.squeeze(img)
 	return img.to_numpy()
 
 
