@@ -52,7 +52,7 @@ def transform_size(img, size = None):
 		img = nn.functional.interpolate(img, size, mode='trilinear')
 		img = torch.squeeze(img)
 		img = torch.squeeze(img)
-	return img.to_numpy()
+	return img.numpy()
 
 
 def main(root_path, out_dir, n_split = 6, size = None):
