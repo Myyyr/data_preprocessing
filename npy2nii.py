@@ -30,11 +30,14 @@ def set_up_folders(path):
 
 def set_up_splits_folders(path, n_split=6, size = None):
 	for i in range(n_split):
-		os.mkdir(os.path.join(path, "split_"+str(i+1)))
+		if not os.path.exists(os.path.join(path, "split_"+str(i+1)))
+			os.mkdir(os.path.join(path, "split_"+str(i+1)))
 
 	for split in range(n_split):
-		os.mkdir(os.path.join(path, "split_"+str(i+1), 'label'))
-		os.mkdir(os.path.join(path, "split_"+str(i+1), 'image'))
+		if not os.path.exists(os.path.join(path, "split_"+str(i+1), 'label')):
+			os.mkdir(os.path.join(path, "split_"+str(i+1), 'label'))
+		if not os.path.exists(os.path.join(path, "split_"+str(i+1), 'image')):
+			os.mkdir(os.path.join(path, "split_"+str(i+1), 'image'))
 
 def pid2niipid(pid):
 	return ''.join(['0']*(4 - len(pid))) + pid
