@@ -63,7 +63,7 @@ def main(root_path, out_dir, n_split = 6, size = None):
 	
 	set_up_splits_folders(out_dir ,n_split=n_split)
 
-	for split in ['labels', 'images']:#, 'labels']:
+	for split in ['images']:#, 'labels']:
 		fl = file_list(os.path.join(root_path, split))
 		for f in fl:
 			pid = f.replace('.npy','')
