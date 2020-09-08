@@ -73,7 +73,7 @@ def main(root_path, out_dir, n_split = 6, size = None):
 
 			npyimg = load_npy(os.path.join(root_path, split, f))
 			# change size
-			# npyimg = transform_size(npyimg, size)
+			npyimg = transform_size(npyimg, size)
 
 			niiim  = npy2nii(npyimg)
 
@@ -90,4 +90,4 @@ def main(root_path, out_dir, n_split = 6, size = None):
 
 
 if __name__ == '__main__':
-	main("/etudiants/siscol/t/themyr_l/data/TCIA_torch", "/etudiants/siscol/t/themyr_l/data/512_512_256", 6, None)
+	main("/etudiants/siscol/t/themyr_l/data/TCIA_torch", "/etudiants/siscol/t/themyr_l/data/256_256_128", 6, None)
