@@ -15,16 +15,21 @@ class TCIAPancreasDataset():
         self.annotation_path = os.path.join(self.data_dir, 'annotations')
         self.image_path = os.path.join(self.data_dir, 'images')
 
-        self.annotation_path_template = os.path.join(self.data_dir, 'annotations/label{}.nii')
-        self.image_path_template = os.path.join(self.data_dir, 'images', 'PANCREAS_{}')
-        
-        self.all_patients_ids = [int(x.split('.')[0].split('label')[-1]) for x in os.listdir(self.annotation_path)]
+        # self.annotation_path_template = os.path.join(self.data_dir, 'annotations/label{}.nii')
+        # self.image_path_template = os.path.join(self.data_dir, 'images', 'PANCREAS_{}')
+        self.annotation_path_template = os.path.join(self.data_dir, 'annotations/{}')
+        self.image_path_template = os.path.join(self.data_dir, 'images/', '{}')
+
+        self.all_patients_ids = [int(x) for x in os.listdir(self.annotation_path)]
         self.nb_classes = 2
 
 
     def get_patient_by_id(self, pid, size=(512,512,256), voxel_spacing=None, windowing=(-160,300)):
-        annotation_path = self.annotation_path_template.format(str(pid).zfill(4))
-        image_path = self.image_path_template.format(str(pid).zfill(4))
+        # annotation_path = self.annotation_path_template.format(str(pid).zfill(4))
+        # image_path = self.image_path_template.format(str(pid).zfill(4))
+
+        annotation_path = self.annotation_path_template.format(str(pid))
+        image_path = self.image_path_template.format(str(pid))
         
         p = Patient(image_path,
                     annotation_path=annotation_path,
