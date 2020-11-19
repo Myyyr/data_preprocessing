@@ -12,11 +12,11 @@ class TCIAPancreasDataset():
     
     def __init__(self, data_dir, class_info=None):
         self.data_dir = data_dir
-        self.annotation_path = os.path.join(self.data_dir, 'TCIA_pancreas_labels')
-        self.image_path = os.path.join(self.data_dir, 'TCIA_pancreas_images')
+        self.annotation_path = os.path.join(self.data_dir, 'annotations')
+        self.image_path = os.path.join(self.data_dir, 'images')
 
-        self.annotation_path_template = os.path.join(self.data_dir, 'TCIA_pancreas_labels/label{}.nii')
-        self.image_path_template = os.path.join(self.data_dir, 'TCIA_pancreas_images', 'PANCREAS_{}')
+        self.annotation_path_template = os.path.join(self.data_dir, 'annotations/label{}.nii')
+        self.image_path_template = os.path.join(self.data_dir, 'images', 'PANCREAS_{}')
         
         self.all_patients_ids = [int(x.split('.')[0].split('label')[-1]) for x in os.listdir(self.annotation_path)]
         self.nb_classes = 2
